@@ -8,7 +8,6 @@ var collided := false
 
 
 func _ready() -> void:
-    print("ready")
     destroy_timer = $DestroyTimer
     destroy_timer.start(time_to_destroy)
 

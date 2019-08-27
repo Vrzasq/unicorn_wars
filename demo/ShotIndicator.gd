@@ -14,10 +14,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
     line.rotation_degrees += delta * rotation_amount
     
-    if line.rotation_degrees >= 90:
-        rotation_amount *= -1
-
-    if line.rotation_degrees <= -90:
+    if line.rotation_degrees >= 90 || line.rotation_degrees <= -90:
         rotation_amount *= -1
         
 
@@ -30,5 +27,4 @@ func get_direction() -> Vector2:
     if direction.y < 0:
         direction.y = 0
 
-    print(direction)
     return direction
