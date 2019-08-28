@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "PowerIndicator",
 "language": "GDScript",
-"path": "res://scenes/ui/power_indicator.gd"
+"path": "res://scenes/ui/power_indicator/power_indicator.gd"
 }, {
 "base": "Node2D",
 "class": "ShotIndicator",

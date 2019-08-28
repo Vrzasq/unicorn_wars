@@ -3,10 +3,10 @@
 [ext_resource path="res://demo/tilesheet.png" type="Texture" id=1]
 [ext_resource path="res://assets/unicorn/unicorn.png" type="Texture" id=2]
 [ext_resource path="res://demo/Player.gd" type="Script" id=3]
-[ext_resource path="res://demo/bullet.tscn" type="PackedScene" id=4]
-[ext_resource path="res://bouncy_material.tres" type="PhysicsMaterial" id=5]
-[ext_resource path="res://demo/ShotIndicator.gd" type="Script" id=6]
-[ext_resource path="res://scenes/ui/power_indicator.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/ui/power_indicator/power_indicator.tscn" type="PackedScene" id=4]
+[ext_resource path="res://demo/bullet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://bouncy_material.tres" type="PhysicsMaterial" id=6]
+[ext_resource path="res://demo/ShotIndicator.gd" type="Script" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -250,18 +250,22 @@ position = Vector2( 9.45374, 47.899 )
 shape = SubResource( 22 )
 
 [node name="Player1" type="RigidBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( 115.56, 208.34 )
 mass = 10.0
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
-BulletScene = ExtResource( 4 )
+PowerIndicatorScene = ExtResource( 4 )
+power_indicator_placeholder_path = NodePath("../HUD/PowerIndicatorPlaceholder")
+BulletScene = ExtResource( 5 )
 bullet_container_path = NodePath("../Bullets")
 other_player_node_path = NodePath("../Player2")
-shot_power = 500
+max_shot_power = 1000
 starting_position_path = NodePath("../PlayersInitialPosition/Player1StatringPosition")
 shot_indicator_path = NodePath("../HUD/ShotIndicator")
+hud_path = NodePath("../HUD")
 
 [node name="Sprite" type="Sprite" parent="Player1"]
 scale = Vector2( -0.25, 0.25 )
@@ -285,7 +289,7 @@ editor/display_folded = true
 [node name="RightWall" type="StaticBody2D" parent="Walls"]
 position = Vector2( 1036, 331 )
 collision_layer = 3
-physics_material_override = ExtResource( 5 )
+physics_material_override = ExtResource( 6 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -297,7 +301,7 @@ shape = SubResource( 23 )
 position = Vector2( 510.034, -10.8777 )
 rotation = 1.5708
 collision_layer = 3
-physics_material_override = ExtResource( 5 )
+physics_material_override = ExtResource( 6 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -308,7 +312,7 @@ shape = SubResource( 24 )
 [node name="LeftWall" type="StaticBody2D" parent="Walls"]
 position = Vector2( -13, 331 )
 collision_layer = 3
-physics_material_override = ExtResource( 5 )
+physics_material_override = ExtResource( 6 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -329,7 +333,7 @@ editor/display_folded = true
 
 [node name="ShotIndicator" type="Node2D" parent="HUD"]
 position = Vector2( 506.274, 176.474 )
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -341,5 +345,5 @@ width = 5.0
 default_color = Color( 0.615686, 0.141176, 0.552941, 1 )
 texture_mode = 1717527925
 
-[node name="PowerIndicator" parent="HUD" instance=ExtResource( 7 )]
-position = Vector2( 353.685, 347.369 )
+[node name="PowerIndicatorPlaceholder" type="Node2D" parent="HUD"]
+position = Vector2( 396.317, 232.106 )
