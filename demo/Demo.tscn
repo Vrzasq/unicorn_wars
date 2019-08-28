@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://demo/tilesheet.png" type="Texture" id=1]
 [ext_resource path="res://assets/unicorn/unicorn.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://demo/bullet.tscn" type="PackedScene" id=5]
 [ext_resource path="res://bouncy_material.tres" type="PhysicsMaterial" id=6]
 [ext_resource path="res://demo/ShotIndicator.gd" type="Script" id=7]
+[ext_resource path="res://assets/rainbow_star2.png" type="Texture" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -215,6 +216,35 @@ extents = Vector2( 11.8591, 331.285 )
 [sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 11.5186, 533.453 )
 
+[sub_resource type="Gradient" id=28]
+offsets = PoolRealArray( 0, 0.167568, 0.318919, 0.610811, 0.783784, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.951172, 1, 0, 1, 0.421875, 1, 0.657867, 1, 0.96096, 0.535156, 1, 1, 1, 0.957008, 0.371094, 1, 0.59375, 1, 0.988098, 1 )
+
+[sub_resource type="GradientTexture" id=29]
+gradient = SubResource( 28 )
+
+[sub_resource type="Curve" id=25]
+_data = [ Vector2( 0, 0.3042 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=26]
+curve = SubResource( 25 )
+
+[sub_resource type="ParticlesMaterial" id=27]
+emission_shape = 1
+emission_sphere_radius = 128.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 10, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 1.0
+angular_velocity = 50.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.4
+scale_curve = SubResource( 26 )
+color_ramp = SubResource( 29 )
+
 [node name="Demo" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -250,7 +280,6 @@ position = Vector2( 9.45374, 47.899 )
 shape = SubResource( 22 )
 
 [node name="Player1" type="RigidBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( 115.56, 208.34 )
 mass = 10.0
 script = ExtResource( 3 )
@@ -334,9 +363,6 @@ editor/display_folded = true
 [node name="ShotIndicator" type="Node2D" parent="HUD"]
 position = Vector2( 506.274, 176.474 )
 script = ExtResource( 7 )
-__meta__ = {
-"_edit_group_": true
-}
 rotation_amount = 100
 
 [node name="Line2D" type="Line2D" parent="HUD/ShotIndicator"]
@@ -347,3 +373,15 @@ texture_mode = 1717527925
 
 [node name="PowerIndicatorPlaceholder" type="Node2D" parent="HUD"]
 position = Vector2( 396.317, 232.106 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 284.289, 294.023 )
+scale = Vector2( 0.05, 0.05 )
+emitting = false
+amount = 20
+lifetime = 10.0
+preprocess = 3.0
+speed_scale = 10.0
+visibility_rect = Rect2( -500, -500, 1000, 1000 )
+process_material = SubResource( 27 )
+texture = ExtResource( 8 )
