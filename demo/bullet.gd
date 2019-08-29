@@ -1,11 +1,15 @@
 extends RigidBody2D
 
+class_name Bullet
+
 export(float) var time_to_destroy_on_hit = 5.0
 export(float) var time_to_destroy = 15.0
+export(int) var min_damage = 5
 
 var destroy_timer: Timer
 var collided = false
 var set_state = false
+var can_damage = true
 
 signal bullet_destroyed
 
@@ -33,4 +37,8 @@ func _physics_process(delta: float) -> void:
 
 func rotate_based_on_valocity() -> void:
     if !collided:
-        rotation = linear_velocity.angle()    
+        rotation = linear_velocity.angle()
+        
+        
+func get_bullet_damage() -> int:
+    return int(round(linear_velocity.length())) * int(mass)

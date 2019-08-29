@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "RigidBody2D",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://demo/bullet.gd"
+}, {
 "base": "Node2D",
 "class": "DemoManager",
 "language": "GDScript",
@@ -35,6 +40,7 @@ _global_script_classes=[ {
 "path": "res://demo/ShotIndicator.gd"
 } ]
 _global_script_class_icons={
+"Bullet": "",
 "DemoManager": "",
 "Player": "",
 "PlayerName": "",
@@ -47,6 +53,10 @@ _global_script_class_icons={
 config/name="unicorn_wars"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/resizable=false
+
 [input]
 
 shot={
@@ -57,5 +67,7 @@ shot={
 
 [rendering]
 
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0
 quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"

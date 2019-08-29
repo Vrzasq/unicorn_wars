@@ -3,6 +3,7 @@ extends RigidBody2D
 class_name Player
 
 signal turn_end
+signal damage_taken
 
 export(PackedScene) var PowerIndicatorScene
 export(NodePath) var power_indicator_placeholder_path
@@ -13,6 +14,8 @@ export(int) var max_shot_power
 export(NodePath) var starting_position_path
 export(NodePath) var shot_indicator_path
 export(NodePath) var hud_path
+export(int) var player_hp = 150
+export(int) var armor = 100
 
 var other_player: RigidBody2D
 var starting_position: Node2D
@@ -125,3 +128,25 @@ func start_turn() -> void:
 func _on_bullet_destroyed() -> void:
     emit_signal("turn_end", other_player as Player)
     pass
+
+func _on_Player_body_entered(body: Node) -> void:
+    var bullet = body as Bullet
+    if bullet && body.can_damage:
+        bullet.can_damage = false
+        var damage := calculate_damage(bullet.get_bullet_damage(), bullet.min_damage)
+        take_damage(damage)
+        
+        
+func take_damage(damage : int) -> void:
+    player_hp -= damage
+    emit_signal("damage_taken", player_hp, damage)
+    print(player_hp)
+
+
+func calculate_damage(bullet_damage : int, min_damage : int) -> int:
+    var damage = int((((bullet_damage / mass) * 0.1) - armor) * 0.3 + min_damage)
+    
+    if damage < min_damage:
+        damage = min_damage
+
+    return damage
