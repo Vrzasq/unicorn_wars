@@ -1,5 +1,8 @@
 extends RigidBody2D
 
+class_name Player
+
+signal turn_end
 
 export(PackedScene) var PowerIndicatorScene
 export(NodePath) var power_indicator_placeholder_path
@@ -18,6 +21,10 @@ var shot_indicator : ShotIndicator
 var hud : Node
 var power_indicator_placeholder : Node2D
 var power_indicator : PowerIndicator
+var shooting_star : Particles2D
+var this_player_turn = false
+var can_shoot = false
+
 
 func _ready() -> void:
     shot_indicator = get_node(shot_indicator_path)
@@ -26,18 +33,25 @@ func _ready() -> void:
     starting_position.transform = transform
     hud = get_node(hud_path)
     power_indicator_placeholder = get_node(power_indicator_placeholder_path)
+    shooting_star = hud.get_node("ShootingStars")
     
 
-
 func _input(event: InputEvent) -> void:
+    if this_player_turn && can_shoot:
+        handle_player_input(event)
+
+
+func handle_player_input(event : InputEvent) -> void:
     if event is InputEventMouseButton:
         if event.is_action_pressed("shot"):
             shot_indicator.stop()
+            emit_starts()
             display_power_indicator()
             
         if event.is_action_released("shot"):
             shot_bullet()
             hide_power_indicator()
+            stop_starts()
             shot_indicator.start()
     
     if event.is_action_pressed("ui_accept"):
@@ -50,6 +64,7 @@ func shot_bullet() -> void:
     bullet_container.add_child(bullet)
     var power = max_shot_power * power_indicator.get_power_ratio()
     bullet.apply_central_impulse(Vector2(power, -power) * shot_indicator.get_direction())
+    can_shoot = false
     print("shot")
     
     
@@ -58,20 +73,25 @@ func create_bullet() -> RigidBody2D:
     bullet.position = $ShootingPoint.global_position
     bullet.collision_layer = other_player.collision_layer
     bullet.collision_mask = other_player.collision_mask
+    bullet.connect("bullet_destroyed", self, "_on_bullet_destroyed")
     
     return bullet
     
     
 func _integrate_forces(state: Physics2DDirectBodyState) -> void:
     if reset_state:
-        reset_state(state)
+        _reset_state(state)
         reset_state = false
         
         
-func reset_state(state: Physics2DDirectBodyState) -> void:
+func _reset_state(state: Physics2DDirectBodyState) -> void:
     state.transform = starting_position.transform
     state.linear_velocity = Vector2.ZERO
     state.angular_velocity = 0.0
+
+
+func reset_position() -> void:
+    reset_state = true
     
     
 func display_power_indicator() -> void:
@@ -82,3 +102,26 @@ func display_power_indicator() -> void:
     
 func hide_power_indicator() -> void:
     power_indicator.queue_free()
+    
+
+func emit_starts() -> void:
+    shooting_star.position = $ShootingPoint.global_position
+    shooting_star.emitting = true
+
+
+func stop_starts() -> void:
+    shooting_star.emitting = false
+    
+    
+func end_turn() -> void:
+    this_player_turn = false
+    
+    
+func start_turn() -> void:
+    this_player_turn = true
+    can_shoot = true
+    
+
+func _on_bullet_destroyed() -> void:
+    emit_signal("turn_end", other_player as Player)
+    pass

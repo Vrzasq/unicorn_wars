@@ -1,13 +1,15 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=40 format=2]
 
-[ext_resource path="res://demo/tilesheet.png" type="Texture" id=1]
-[ext_resource path="res://assets/unicorn/unicorn.png" type="Texture" id=2]
+[ext_resource path="res://demo/demo_manager.gd" type="Script" id=1]
+[ext_resource path="res://demo/tilesheet.png" type="Texture" id=2]
 [ext_resource path="res://demo/Player.gd" type="Script" id=3]
 [ext_resource path="res://scenes/ui/power_indicator/power_indicator.tscn" type="PackedScene" id=4]
 [ext_resource path="res://demo/bullet.tscn" type="PackedScene" id=5]
-[ext_resource path="res://bouncy_material.tres" type="PhysicsMaterial" id=6]
-[ext_resource path="res://demo/ShotIndicator.gd" type="Script" id=7]
-[ext_resource path="res://assets/rainbow_star2.png" type="Texture" id=8]
+[ext_resource path="res://assets/unicorn/unicorn.png" type="Texture" id=6]
+[ext_resource path="res://bouncy_material.tres" type="PhysicsMaterial" id=7]
+[ext_resource path="res://demo/ShotIndicator.gd" type="Script" id=8]
+[ext_resource path="res://assets/white_star.png" type="Texture" id=9]
+[ext_resource path="res://scenes/ui/player_name/player_name.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -71,7 +73,7 @@ points = PoolVector2Array( 0, 12.9167, 9.25, 0, 52.3055, 0, 63.4167, 10.8333, 64
 
 [sub_resource type="TileSet" id=21]
 0/name = "tilesheet.png 0"
-0/texture = ExtResource( 1 )
+0/texture = ExtResource( 2 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 576, 192 )
@@ -216,20 +218,20 @@ extents = Vector2( 11.8591, 331.285 )
 [sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 11.5186, 533.453 )
 
-[sub_resource type="Gradient" id=28]
-offsets = PoolRealArray( 0, 0.167568, 0.318919, 0.610811, 0.783784, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 0.951172, 1, 0, 1, 0.421875, 1, 0.657867, 1, 0.96096, 0.535156, 1, 1, 1, 0.957008, 0.371094, 1, 0.59375, 1, 0.988098, 1 )
+[sub_resource type="Gradient" id=25]
+offsets = PoolRealArray( 0, 0.167568, 0.318919, 0.508108, 0.691892, 0.837838, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.951172, 1, 0, 1, 0.421875, 1, 0.657867, 1, 0.936027, 0.238281, 1, 1, 1, 0.904297, 0.125, 1, 1, 0.0273438, 0.0273438, 1, 0, 0.460938, 1, 1 )
 
-[sub_resource type="GradientTexture" id=29]
-gradient = SubResource( 28 )
+[sub_resource type="GradientTexture" id=26]
+gradient = SubResource( 25 )
 
-[sub_resource type="Curve" id=25]
+[sub_resource type="Curve" id=27]
 _data = [ Vector2( 0, 0.3042 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=26]
-curve = SubResource( 25 )
+[sub_resource type="CurveTexture" id=28]
+curve = SubResource( 27 )
 
-[sub_resource type="ParticlesMaterial" id=27]
+[sub_resource type="ParticlesMaterial" id=29]
 emission_shape = 1
 emission_sphere_radius = 128.0
 flag_disable_z = true
@@ -242,10 +244,11 @@ angular_velocity_random = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.4
-scale_curve = SubResource( 26 )
-color_ramp = SubResource( 29 )
+scale_curve = SubResource( 28 )
+color_ramp = SubResource( 26 )
 
 [node name="Demo" type="Node2D"]
+script = ExtResource( 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 21 )
@@ -254,18 +257,30 @@ collision_layer = 3
 format = 1
 tile_data = PoolIntArray( 524288, 0, 1, 524289, 0, 2, 524290, 0, 2, 524291, 0, 2, 524292, 0, 2, 524293, 0, 2, 524294, 0, 2, 524295, 0, 2, 524296, 0, 2, 524297, 0, 2, 524298, 0, 2, 524299, 0, 2, 524300, 0, 2, 524301, 0, 2, 524302, 0, 2, 524303, 0, 3, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0 )
 
-[node name="Player2" type="RigidBody2D" parent="."]
+[node name="Player2" type="RigidBody2D" parent="." groups=[
+"players",
+]]
 position = Vector2( 893.347, 218.891 )
 collision_layer = 2
 collision_mask = 2
 mass = 10.0
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
+PowerIndicatorScene = ExtResource( 4 )
+power_indicator_placeholder_path = NodePath("../HUD/PowerIndicatorPlaceholder")
+BulletScene = ExtResource( 5 )
+bullet_container_path = NodePath("../Bullets")
+other_player_node_path = NodePath("../Player1")
+max_shot_power = 1000
+starting_position_path = NodePath("../PlayersInitialPosition/Player2StartingPosition")
+shot_indicator_path = NodePath("../HUD/ShotIndicator")
+hud_path = NodePath("../HUD")
 
 [node name="Sprite" type="Sprite" parent="Player2"]
 scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 2 )
+texture = ExtResource( 6 )
 
 [node name="ShootingPoint" type="Node2D" parent="Player2"]
 modulate = Color( 0.14902, 0.0705882, 0.0705882, 1 )
@@ -279,7 +294,9 @@ polygon = PoolVector2Array( -148.5, -209.3, -148.5, -206.7, -120.5, -180.7, -120
 position = Vector2( 9.45374, 47.899 )
 shape = SubResource( 22 )
 
-[node name="Player1" type="RigidBody2D" parent="."]
+[node name="Player1" type="RigidBody2D" parent="." groups=[
+"players",
+]]
 position = Vector2( 115.56, 208.34 )
 mass = 10.0
 script = ExtResource( 3 )
@@ -298,7 +315,7 @@ hud_path = NodePath("../HUD")
 
 [node name="Sprite" type="Sprite" parent="Player1"]
 scale = Vector2( -0.25, 0.25 )
-texture = ExtResource( 2 )
+texture = ExtResource( 6 )
 
 [node name="ShootingPoint" type="Node2D" parent="Player1"]
 modulate = Color( 0.14902, 0.0705882, 0.0705882, 1 )
@@ -318,7 +335,7 @@ editor/display_folded = true
 [node name="RightWall" type="StaticBody2D" parent="Walls"]
 position = Vector2( 1036, 331 )
 collision_layer = 3
-physics_material_override = ExtResource( 6 )
+physics_material_override = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -330,7 +347,7 @@ shape = SubResource( 23 )
 position = Vector2( 510.034, -10.8777 )
 rotation = 1.5708
 collision_layer = 3
-physics_material_override = ExtResource( 6 )
+physics_material_override = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -341,7 +358,7 @@ shape = SubResource( 24 )
 [node name="LeftWall" type="StaticBody2D" parent="Walls"]
 position = Vector2( -13, 331 )
 collision_layer = 3
-physics_material_override = ExtResource( 6 )
+physics_material_override = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -362,7 +379,7 @@ editor/display_folded = true
 
 [node name="ShotIndicator" type="Node2D" parent="HUD"]
 position = Vector2( 506.274, 176.474 )
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 rotation_amount = 100
 
 [node name="Line2D" type="Line2D" parent="HUD/ShotIndicator"]
@@ -374,8 +391,8 @@ texture_mode = 1717527925
 [node name="PowerIndicatorPlaceholder" type="Node2D" parent="HUD"]
 position = Vector2( 396.317, 232.106 )
 
-[node name="Particles2D" type="Particles2D" parent="."]
-position = Vector2( 284.289, 294.023 )
+[node name="ShootingStars" type="Particles2D" parent="HUD"]
+position = Vector2( 404.999, 63.0485 )
 scale = Vector2( 0.05, 0.05 )
 emitting = false
 amount = 20
@@ -383,5 +400,8 @@ lifetime = 10.0
 preprocess = 3.0
 speed_scale = 10.0
 visibility_rect = Rect2( -500, -500, 1000, 1000 )
-process_material = SubResource( 27 )
-texture = ExtResource( 8 )
+process_material = SubResource( 29 )
+texture = ExtResource( 9 )
+
+[node name="PlayerName" parent="HUD" instance=ExtResource( 10 )]
+position = Vector2( 354.56, 34.7196 )

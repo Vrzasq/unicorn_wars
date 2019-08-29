@@ -7,10 +7,15 @@
 extents = Vector2( 8.32345, 8.58693 )
 
 [node name="RigidBody2D" type="RigidBody2D"]
+position = Vector2( 157.631, 47.6656 )
 mass = 20.0
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+time_to_destroy_on_hit = 8.0
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.3, 0.3 )

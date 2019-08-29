@@ -10,6 +10,21 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node2D",
+"class": "DemoManager",
+"language": "GDScript",
+"path": "res://demo/demo_manager.gd"
+}, {
+"base": "RigidBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://demo/Player.gd"
+}, {
+"base": "Node2D",
+"class": "PlayerName",
+"language": "GDScript",
+"path": "res://scenes/ui/player_name/player_name.gd"
+}, {
+"base": "Node2D",
 "class": "PowerIndicator",
 "language": "GDScript",
 "path": "res://scenes/ui/power_indicator/power_indicator.gd"
@@ -20,6 +35,9 @@ _global_script_classes=[ {
 "path": "res://demo/ShotIndicator.gd"
 } ]
 _global_script_class_icons={
+"DemoManager": "",
+"Player": "",
+"PlayerName": "",
 "PowerIndicator": "",
 "ShotIndicator": ""
 }
