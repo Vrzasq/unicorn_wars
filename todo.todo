@@ -1,0 +1,33 @@
+Demo:
+    ☐ add player hp gui @high @today
+    ☐ gameover @high
+    Demo start:
+        ☐ player naming @medium
+        ☐ direct to play demo scene @medium
+    ☐ add background @low
+    ☐ add proper bullet @low
+    ☐ change direction indactor @low
+    Add wheater effects:
+        ☐ direction wind @medium
+        ☐ gravity pull @medium
+        ☐ randomization per turn @medium
+
+
+Features:
+    *Loose ideas*
+    ☐ play without borders
+    ☐ play without roof
+    Play without indicators:
+        ☐ direction indicator
+        ☐ power indicator
+        ☐ both above xD
+    ☐ rapid fire mode
+    ☐ friendly fire mode
+    ☐ extra bouncy mode
+    ☐ p2p multiplayer
+    ☐ AI
+    ☐ power ups
+    ☐ oposite to power ups
+    ☐ space level
+    ☐ under water level
+    ☐ platform level
