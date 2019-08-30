@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/ui/hp_bar/hp_bar.gd" type="Script" id=1]
 [ext_resource path="res://assets/clouds.png" type="Texture" id=2]
 [ext_resource path="res://assets/rainbow2.png" type="Texture" id=3]
+[ext_resource path="res://scenes/ui/hp_bar/hp_loss.tres" type="Animation" id=4]
 
 [node name="HpBar" type="Node2D"]
 position = Vector2( 246.317, 83.6845 )
@@ -26,3 +27,8 @@ rect_scale = Vector2( 2, 2 )
 text = "HP"
 align = 1
 valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/hp_loss = ExtResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]
