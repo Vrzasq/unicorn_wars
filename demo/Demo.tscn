@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://demo/demo_manager.gd" type="Script" id=1]
 [ext_resource path="res://demo/tilesheet.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://demo/ShotIndicator.gd" type="Script" id=8]
 [ext_resource path="res://assets/white_star.png" type="Texture" id=9]
 [ext_resource path="res://scenes/ui/player_name/player_name.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/ui/hp_bar/hp_bar.tscn" type="PackedScene" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -409,5 +410,16 @@ texture = ExtResource( 9 )
 
 [node name="PlayerName" parent="HUD" instance=ExtResource( 10 )]
 position = Vector2( 354.56, 34.7196 )
+
+[node name="HpBarPlayer1" parent="HUD" instance=ExtResource( 11 )]
+position = Vector2( 71, 79 )
+max_value = 150
+
+[node name="HpBarPlayer2" parent="HUD" instance=ExtResource( 11 )]
+position = Vector2( 776, 78 )
+max_value = 150
+flip = true
 [connection signal="body_entered" from="Player2" to="Player2" method="_on_Player_body_entered"]
+[connection signal="damage_taken" from="Player2" to="HUD/HpBarPlayer2" method="on_hp_loss"]
 [connection signal="body_entered" from="Player1" to="Player1" method="_on_Player_body_entered"]
+[connection signal="damage_taken" from="Player1" to="HUD/HpBarPlayer1" method="on_hp_loss"]

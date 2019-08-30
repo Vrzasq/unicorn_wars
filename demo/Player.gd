@@ -138,8 +138,12 @@ func _on_Player_body_entered(body: Node) -> void:
         
         
 func take_damage(damage : int) -> void:
+    var damage_taken_arg := DamageTakenArgs.new()
+    damage_taken_arg.current_hp = player_hp
+    damage_taken_arg.damage = damage
     player_hp -= damage
-    emit_signal("damage_taken", player_hp, damage)
+    damage_taken_arg.target_hp = player_hp
+    emit_signal("damage_taken", damage_taken_arg)
     print(player_hp)
 
 

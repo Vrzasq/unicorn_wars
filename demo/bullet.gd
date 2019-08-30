@@ -17,6 +17,7 @@ signal bullet_destroyed
 func _ready() -> void:
     destroy_timer = $DestroyTimer
     destroy_timer.start(time_to_destroy)
+    z_index = 2
 
 
 func _on_RigidBody2D_body_entered(body: Node) -> void:

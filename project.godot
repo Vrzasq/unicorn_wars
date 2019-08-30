@@ -14,10 +14,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://demo/bullet.gd"
 }, {
+"base": "Reference",
+"class": "DamageTakenArgs",
+"language": "GDScript",
+"path": "res://scripts/damage_taken_args.gd"
+}, {
 "base": "Node2D",
 "class": "DemoManager",
 "language": "GDScript",
 "path": "res://demo/demo_manager.gd"
+}, {
+"base": "Node2D",
+"class": "HpBar",
+"language": "GDScript",
+"path": "res://scenes/ui/hp_bar/hp_bar.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Player",
@@ -41,7 +51,9 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Bullet": "",
+"DamageTakenArgs": "",
 "DemoManager": "",
+"HpBar": "",
 "Player": "",
 "PlayerName": "",
 "PowerIndicator": "",
