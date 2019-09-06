@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://resources/themes/default.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/ui/rainbow_label/rainbow_label.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/themes/title.tres" type="Theme" id=3]
+
+[node name="Main" type="Node"]
+
+[node name="StartGameButton" type="Button" parent="."]
+margin_left = 339.693
+margin_top = 428.665
+margin_right = 751.693
+margin_bottom = 538.665
+theme = ExtResource( 1 )
+action_mode = 0
+text = "START GAME"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 342.338
+margin_top = 172.662
+margin_right = 752.338
+margin_bottom = 376.662
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 410.0
+margin_bottom = 43.0
+theme = ExtResource( 1 )
+text = "Player 1 Name"
+align = 1
+valign = 1
+
+[node name="Player1Name" type="LineEdit" parent="VBoxContainer"]
+margin_top = 47.0
+margin_right = 410.0
+margin_bottom = 100.0
+theme = ExtResource( 1 )
+align = 1
+max_length = 10
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+margin_top = 104.0
+margin_right = 410.0
+margin_bottom = 147.0
+theme = ExtResource( 1 )
+text = "Player 1 Name"
+align = 1
+valign = 1
+
+[node name="Player2Name" type="LineEdit" parent="VBoxContainer"]
+margin_top = 151.0
+margin_right = 410.0
+margin_bottom = 204.0
+theme = ExtResource( 1 )
+align = 1
+max_length = 10
+
+[node name="Title" parent="." instance=ExtResource( 2 )]
+position = Vector2( 381.633, 43.7119 )
+text = "Unicorn Wars"
+theme = ExtResource( 3 )

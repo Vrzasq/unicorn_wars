@@ -1,7 +1,9 @@
 Demo:
     ✔ add player hp gui @high @today @done(19-08-30 16:24)
     ✔ add animation for loss hp @done(19-08-30 16:52)
+    ☐ start page
     ☐ gameover @high
+    ☐ play again
     Demo start:
         ☐ player naming @medium
         ☐ direct to play demo scene @medium

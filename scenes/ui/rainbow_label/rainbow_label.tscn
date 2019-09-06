@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/ui/rainbow_label/rainbow_label.gd" type="Script" id=1]
+[ext_resource path="res://resources/themes/label.tres" type="Theme" id=2]
+[ext_resource path="res://scenes/ui/rainbow_label/rainbow_label.tres" type="Animation" id=3]
+
+[node name="RainbowLabel" type="Node2D"]
+position = Vector2( 406.126, 155.682 )
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_right = 133.0
+margin_bottom = 14.0
+theme = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Hello There"
+align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "rainbow_label"
+anims/rainbow_label = ExtResource( 3 )

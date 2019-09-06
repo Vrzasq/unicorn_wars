@@ -17,6 +17,8 @@ export(NodePath) var hud_path
 export(int) var player_hp = 150
 export(int) var armor = 100
 
+const ShootingStarsScene = preload("res://scenes/player/shooting_stars.tscn")
+
 var other_player: RigidBody2D
 var starting_position: Node2D
 var reset_state := false
@@ -24,7 +26,7 @@ var shot_indicator : ShotIndicator
 var hud : Node
 var power_indicator_placeholder : Node2D
 var power_indicator : PowerIndicator
-var shooting_star : Particles2D
+var shooting_stars : Particles2D
 var this_player_turn = false
 var can_shoot = false
 
@@ -36,7 +38,9 @@ func _ready() -> void:
     starting_position.transform = transform
     hud = get_node(hud_path)
     power_indicator_placeholder = get_node(power_indicator_placeholder_path)
-    shooting_star = hud.get_node("ShootingStars")
+    shooting_stars = ShootingStarsScene.instance()
+    shooting_stars.position = $ShootingPoint.position
+    add_child(shooting_stars)
     
 
 func _input(event: InputEvent) -> void:
@@ -108,12 +112,11 @@ func hide_power_indicator() -> void:
     
 
 func emit_starts() -> void:
-    shooting_star.position = $ShootingPoint.global_position
-    shooting_star.emitting = true
+    shooting_stars.emitting = true
 
 
 func stop_starts() -> void:
-    shooting_star.emitting = false
+    shooting_stars.emitting = false
     
     
 func end_turn() -> void:
@@ -127,12 +130,12 @@ func start_turn() -> void:
 
 func _on_bullet_destroyed() -> void:
     emit_signal("turn_end", other_player as Player)
-    pass
+    
 
 func _on_Player_body_entered(body: Node) -> void:
     var bullet = body as Bullet
     if bullet && body.can_damage:
-        bullet.can_damage = false
+#        bullet.can_damage = false
         var damage := calculate_damage(bullet.get_bullet_damage(), bullet.min_damage)
         take_damage(damage)
         
@@ -141,7 +144,7 @@ func take_damage(damage : int) -> void:
     var damage_taken_arg := DamageTakenArgs.new()
     damage_taken_arg.current_hp = player_hp
     damage_taken_arg.damage = damage
-    player_hp -= damage
+    reduce_hp(damage)
     damage_taken_arg.target_hp = player_hp
     emit_signal("damage_taken", damage_taken_arg)
     print(player_hp)
@@ -154,3 +157,9 @@ func calculate_damage(bullet_damage : int, min_damage : int) -> int:
         damage = min_damage
 
     return damage
+    
+    
+func reduce_hp(damage : int) -> void:
+    player_hp -= damage
+    if player_hp < 0:
+        player_hp = 0

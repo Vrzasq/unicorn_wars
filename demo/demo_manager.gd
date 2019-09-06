@@ -4,7 +4,7 @@ class_name DemoManager
 
 var players = {}
 var current_player : Player
-var player_name_display : PlayerName
+var player_name_display : RainbowLabel
 
 func _ready() -> void:
     player_name_display = $HUD/PlayerName

@@ -2,7 +2,7 @@ extends Node2D
 
 class_name PowerIndicator
 
-export(float) var growth_multiplayer = 1
+export(float) var growth_multiplayer = 0.6
 
 var progress_bar : TextureProgress
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://demo/demo_manager.gd" type="Script" id=1]
 [ext_resource path="res://demo/tilesheet.png" type="Texture" id=2]
@@ -8,9 +8,8 @@
 [ext_resource path="res://assets/unicorn/unicorn.png" type="Texture" id=6]
 [ext_resource path="res://bouncy_material.tres" type="PhysicsMaterial" id=7]
 [ext_resource path="res://demo/ShotIndicator.gd" type="Script" id=8]
-[ext_resource path="res://assets/white_star.png" type="Texture" id=9]
-[ext_resource path="res://scenes/ui/player_name/player_name.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/ui/hp_bar/hp_bar.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/ui/rainbow_label/rainbow_label.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/ui/hp_bar/hp_bar.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -219,35 +218,6 @@ extents = Vector2( 11.8591, 331.285 )
 [sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 11.5186, 533.453 )
 
-[sub_resource type="Gradient" id=25]
-offsets = PoolRealArray( 0, 0.167568, 0.318919, 0.508108, 0.691892, 0.837838, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 0.951172, 1, 0, 1, 0.421875, 1, 0.657867, 1, 0.936027, 0.238281, 1, 1, 1, 0.904297, 0.125, 1, 1, 0.0273438, 0.0273438, 1, 0, 0.460938, 1, 1 )
-
-[sub_resource type="GradientTexture" id=26]
-gradient = SubResource( 25 )
-
-[sub_resource type="Curve" id=27]
-_data = [ Vector2( 0, 0.3042 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=28]
-curve = SubResource( 27 )
-
-[sub_resource type="ParticlesMaterial" id=29]
-emission_shape = 1
-emission_sphere_radius = 128.0
-flag_disable_z = true
-spread = 180.0
-gravity = Vector3( 0, 10, 0 )
-initial_velocity = 100.0
-initial_velocity_random = 1.0
-angular_velocity = 50.0
-angular_velocity_random = 1.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 0.4
-scale_curve = SubResource( 28 )
-color_ramp = SubResource( 26 )
-
 [node name="Demo" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -261,6 +231,7 @@ tile_data = PoolIntArray( 524288, 0, 1, 524289, 0, 2, 524290, 0, 2, 524291, 0, 2
 [node name="Player2" type="RigidBody2D" parent="." groups=[
 "players",
 ]]
+editor/display_folded = true
 position = Vector2( 893.347, 218.891 )
 collision_layer = 2
 collision_mask = 2
@@ -300,6 +271,7 @@ shape = SubResource( 22 )
 [node name="Player1" type="RigidBody2D" parent="." groups=[
 "players",
 ]]
+editor/display_folded = true
 position = Vector2( 115.56, 208.34 )
 mass = 10.0
 contacts_reported = 1
@@ -396,26 +368,14 @@ texture_mode = 1717527925
 [node name="PowerIndicatorPlaceholder" type="Node2D" parent="HUD"]
 position = Vector2( 396.317, 232.106 )
 
-[node name="ShootingStars" type="Particles2D" parent="HUD"]
-position = Vector2( 404.999, 63.0485 )
-scale = Vector2( 0.05, 0.05 )
-emitting = false
-amount = 20
-lifetime = 10.0
-preprocess = 3.0
-speed_scale = 10.0
-visibility_rect = Rect2( -500, -500, 1000, 1000 )
-process_material = SubResource( 29 )
-texture = ExtResource( 9 )
+[node name="PlayerName" parent="HUD" instance=ExtResource( 9 )]
+position = Vector2( 432.102, 34.7196 )
 
-[node name="PlayerName" parent="HUD" instance=ExtResource( 10 )]
-position = Vector2( 354.56, 34.7196 )
-
-[node name="HpBarPlayer1" parent="HUD" instance=ExtResource( 11 )]
+[node name="HpBarPlayer1" parent="HUD" instance=ExtResource( 10 )]
 position = Vector2( 71, 79 )
 max_value = 150
 
-[node name="HpBarPlayer2" parent="HUD" instance=ExtResource( 11 )]
+[node name="HpBarPlayer2" parent="HUD" instance=ExtResource( 10 )]
 position = Vector2( 776, 78 )
 max_value = 150
 flip = true

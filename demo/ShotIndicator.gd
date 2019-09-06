@@ -2,7 +2,6 @@ extends Node2D
 
 class_name ShotIndicator
 
-export(int) var line_length = 100
 export(int) var rotation_amount = 5
 export(bool) var is_running = true
 

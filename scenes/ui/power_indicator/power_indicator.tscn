@@ -22,7 +22,6 @@ width = 250
 [node name="PowerIndicator" type="Node2D"]
 position = Vector2( 382.757, 282.534 )
 script = ExtResource( 1 )
-growth_multiplayer = 0.6
 
 [node name="Label" type="Label" parent="."]
 margin_left = 21.9249
@@ -30,10 +29,11 @@ margin_top = -31.415
 margin_right = 159.925
 margin_bottom = -17.415
 rect_scale = Vector2( 1.5, 1.5 )
-custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color = Color( 0.308235, 0.603921, 0.7, 1 )
 text = "POWER"
 align = 1
 valign = 1
+percent_visible = 0.2
 
 [node name="TextureProgress" type="TextureProgress" parent="."]
 margin_left = -1.52588e-005
