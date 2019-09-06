@@ -1,17 +1,21 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://resources/themes/default.tres" type="Theme" id=1]
-[ext_resource path="res://scenes/ui/rainbow_label/rainbow_label.tscn" type="PackedScene" id=2]
-[ext_resource path="res://resources/themes/title.tres" type="Theme" id=3]
+[ext_resource path="res://demo/main.gd" type="Script" id=1]
+[ext_resource path="res://demo/Demo.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/themes/default.tres" type="Theme" id=3]
+[ext_resource path="res://scenes/ui/rainbow_label/rainbow_label.tscn" type="PackedScene" id=4]
+[ext_resource path="res://resources/themes/title.tres" type="Theme" id=5]
 
 [node name="Main" type="Node"]
+script = ExtResource( 1 )
+GameScene = ExtResource( 2 )
 
 [node name="StartGameButton" type="Button" parent="."]
 margin_left = 339.693
 margin_top = 428.665
 margin_right = 751.693
 margin_bottom = 538.665
-theme = ExtResource( 1 )
+theme = ExtResource( 3 )
 action_mode = 0
 text = "START GAME"
 
@@ -27,7 +31,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 410.0
 margin_bottom = 43.0
-theme = ExtResource( 1 )
+theme = ExtResource( 3 )
 text = "Player 1 Name"
 align = 1
 valign = 1
@@ -36,7 +40,7 @@ valign = 1
 margin_top = 47.0
 margin_right = 410.0
 margin_bottom = 100.0
-theme = ExtResource( 1 )
+theme = ExtResource( 3 )
 align = 1
 max_length = 10
 
@@ -44,8 +48,8 @@ max_length = 10
 margin_top = 104.0
 margin_right = 410.0
 margin_bottom = 147.0
-theme = ExtResource( 1 )
-text = "Player 1 Name"
+theme = ExtResource( 3 )
+text = "Player 2 Name"
 align = 1
 valign = 1
 
@@ -53,11 +57,12 @@ valign = 1
 margin_top = 151.0
 margin_right = 410.0
 margin_bottom = 204.0
-theme = ExtResource( 1 )
+theme = ExtResource( 3 )
 align = 1
 max_length = 10
 
-[node name="Title" parent="." instance=ExtResource( 2 )]
+[node name="Title" parent="." instance=ExtResource( 4 )]
 position = Vector2( 381.633, 43.7119 )
 text = "Unicorn Wars"
-theme = ExtResource( 3 )
+theme = ExtResource( 5 )
+[connection signal="pressed" from="StartGameButton" to="." method="_on_StartGameButton_pressed"]

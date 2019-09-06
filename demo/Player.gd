@@ -16,6 +16,7 @@ export(NodePath) var shot_indicator_path
 export(NodePath) var hud_path
 export(int) var player_hp = 150
 export(int) var armor = 100
+export(String) var display_name = "Player"
 
 const ShootingStarsScene = preload("res://scenes/player/shooting_stars.tscn")
 

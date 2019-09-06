@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/ui/hp_bar/hp_bar.gd" type="Script" id=1]
-[ext_resource path="res://assets/rainbow2.png" type="Texture" id=2]
-[ext_resource path="res://scenes/ui/hp_bar/hp_loss.tres" type="Animation" id=3]
+[ext_resource path="res://assets/rainbow.png" type="Texture" id=2]
+[ext_resource path="res://resources/themes/hp_label.tres" type="Theme" id=3]
+[ext_resource path="res://scenes/ui/hp_bar/hp_loss.tres" type="Animation" id=4]
 
 [node name="HpBar" type="Node2D"]
 position = Vector2( 246.317, 83.6845 )
@@ -17,16 +18,16 @@ value = 50.0
 texture_progress = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = 110.328
-margin_top = -31.5791
-margin_right = 150.328
-margin_bottom = -17.5791
-rect_scale = Vector2( 2, 2 )
+margin_left = 128.396
+margin_top = -38.5285
+margin_right = 169.396
+margin_bottom = 4.4715
+theme = ExtResource( 3 )
 text = "HP"
 align = 1
 valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/hp_loss = ExtResource( 3 )
+anims/hp_loss = ExtResource( 4 )
 
 [node name="Tween" type="Tween" parent="."]

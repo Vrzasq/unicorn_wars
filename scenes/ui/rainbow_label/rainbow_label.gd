@@ -7,7 +7,6 @@ export(Theme) var theme
 
 var label : Label
 
-
 func _ready() -> void:
     label = $Label
     label.text = text
@@ -15,5 +14,5 @@ func _ready() -> void:
         $Label.theme = theme
     
 
-func set_player_name(var name : String) -> void:
+func set_text(var name : String) -> void:
     label.text = name

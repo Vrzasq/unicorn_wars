@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/ui/power_indicator/power_indicator.gd" type="Script" id=1]
-[ext_resource path="res://scenes/ui/power_indicator/power_label_animation.tres" type="Animation" id=2]
+[ext_resource path="res://resources/themes/label.tres" type="Theme" id=2]
+[ext_resource path="res://scenes/ui/power_indicator/power_label_animation.tres" type="Animation" id=3]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 1 )
@@ -24,16 +25,14 @@ position = Vector2( 382.757, 282.534 )
 script = ExtResource( 1 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = 21.9249
-margin_top = -31.415
-margin_right = 159.925
-margin_bottom = -17.415
-rect_scale = Vector2( 1.5, 1.5 )
+margin_left = 60.0
+margin_top = -32.0
+margin_right = 198.0
+theme = ExtResource( 2 )
 custom_colors/font_color = Color( 0.308235, 0.603921, 0.7, 1 )
 text = "POWER"
 align = 1
 valign = 1
-percent_visible = 0.2
 
 [node name="TextureProgress" type="TextureProgress" parent="."]
 margin_left = -1.52588e-005
@@ -47,4 +46,4 @@ texture_progress = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "PowerLabelAnimation"
-anims/PowerLabelAnimation = ExtResource( 2 )
+anims/PowerLabelAnimation = ExtResource( 3 )
