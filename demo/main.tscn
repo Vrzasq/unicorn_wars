@@ -1,21 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://demo/main.gd" type="Script" id=1]
-[ext_resource path="res://demo/Demo.tscn" type="PackedScene" id=2]
-[ext_resource path="res://resources/themes/default.tres" type="Theme" id=3]
-[ext_resource path="res://scenes/ui/rainbow_label/rainbow_label.tscn" type="PackedScene" id=4]
-[ext_resource path="res://resources/themes/title.tres" type="Theme" id=5]
+[ext_resource path="res://resources/themes/default.tres" type="Theme" id=2]
+[ext_resource path="res://scenes/ui/rainbow_label/rainbow_label.tscn" type="PackedScene" id=3]
+[ext_resource path="res://resources/themes/title.tres" type="Theme" id=4]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
-GameScene = ExtResource( 2 )
 
 [node name="StartGameButton" type="Button" parent="."]
 margin_left = 320.0
 margin_top = 429.0
 margin_right = 732.0
 margin_bottom = 539.0
-theme = ExtResource( 3 )
+theme = ExtResource( 2 )
 action_mode = 0
 text = "START GAME"
 
@@ -31,7 +29,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 410.0
 margin_bottom = 43.0
-theme = ExtResource( 3 )
+theme = ExtResource( 2 )
 text = "Player 1 Name"
 align = 1
 valign = 1
@@ -40,7 +38,7 @@ valign = 1
 margin_top = 47.0
 margin_right = 410.0
 margin_bottom = 100.0
-theme = ExtResource( 3 )
+theme = ExtResource( 2 )
 align = 1
 max_length = 10
 
@@ -48,7 +46,7 @@ max_length = 10
 margin_top = 104.0
 margin_right = 410.0
 margin_bottom = 147.0
-theme = ExtResource( 3 )
+theme = ExtResource( 2 )
 text = "Player 2 Name"
 align = 1
 valign = 1
@@ -57,12 +55,12 @@ valign = 1
 margin_top = 151.0
 margin_right = 410.0
 margin_bottom = 204.0
-theme = ExtResource( 3 )
+theme = ExtResource( 2 )
 align = 1
 max_length = 10
 
-[node name="Title" parent="." instance=ExtResource( 4 )]
+[node name="Title" parent="." instance=ExtResource( 3 )]
 position = Vector2( 375, 44 )
 text = "Unicorn Wars"
-theme = ExtResource( 5 )
+theme = ExtResource( 4 )
 [connection signal="pressed" from="StartGameButton" to="." method="_on_StartGameButton_pressed"]

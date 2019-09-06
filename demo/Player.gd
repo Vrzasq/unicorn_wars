@@ -83,7 +83,7 @@ func shot_bullet() -> void:
     var power = max_shot_power * power_indicator.get_power_ratio()
     bullet.apply_central_impulse(Vector2(power, -power) * shot_indicator.get_direction())
     can_shoot = false
-    print("shot")
+    # print("shot")
     
     
 func create_bullet() -> RigidBody2D:
@@ -147,7 +147,7 @@ func _on_bullet_destroyed() -> void:
 func _on_Player_body_entered(body: Node) -> void:
     var bullet = body as Bullet
     if bullet && body.can_damage:
-        bullet.can_damage = !can_be_dmg_after_hit
+        bullet.can_damage = can_be_dmg_after_hit
         var damage := calculate_damage(bullet.get_bullet_damage(), bullet.min_damage)
         take_damage(damage)
         if dead:
@@ -161,7 +161,7 @@ func take_damage(damage : int) -> void:
     reduce_hp(damage)
     damage_taken_arg.target_hp = player_hp
     emit_signal("damage_taken", damage_taken_arg)
-    print(player_hp)
+    # print(player_hp)
 
 
 func calculate_damage(bullet_damage : int, min_damage : int) -> int:

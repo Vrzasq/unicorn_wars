@@ -13,7 +13,7 @@ func _ready() -> void:
     player_name_display = $HUD/PlayerName
     assign_players()
     choose_statring_player()
-    print(current_player.display_name)
+    # print(current_player.display_name)
     get_tree().paused = true
 
 
@@ -43,7 +43,7 @@ func choose_statring_player() -> void:
     
     
 func on_player_turn_end(other_player : Player) -> void:
-    print(other_player.name)
+    # print(other_player.name)
     current_player.end_turn()
     current_player.reset_position()
     other_player.start_turn()
