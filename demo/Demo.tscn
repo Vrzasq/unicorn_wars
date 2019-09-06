@@ -253,7 +253,7 @@ max_shot_power = 1000
 starting_position_path = NodePath("../PlayersInitialPosition/Player2StartingPosition")
 shot_indicator_path = NodePath("../HUD/ShotIndicator")
 hud_path = NodePath("../HUD")
-player_hp = 1
+player_hp = 200
 can_be_dmg_after_hit = true
 
 [node name="Sprite" type="Sprite" parent="Player2"]
@@ -292,7 +292,7 @@ max_shot_power = 1000
 starting_position_path = NodePath("../PlayersInitialPosition/Player1StatringPosition")
 shot_indicator_path = NodePath("../HUD/ShotIndicator")
 hud_path = NodePath("../HUD")
-player_hp = 1
+player_hp = 200
 can_be_dmg_after_hit = true
 
 [node name="Sprite" type="Sprite" parent="Player1"]
@@ -358,7 +358,6 @@ editor/display_folded = true
 [node name="Player2StartingPosition" type="Node2D" parent="PlayersInitialPosition"]
 
 [node name="HUD" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="ShotIndicator" type="Node2D" parent="HUD"]
 position = Vector2( 506.274, 176.474 )
@@ -379,11 +378,11 @@ position = Vector2( 432.102, 34.7196 )
 
 [node name="HpBarPlayer1" parent="HUD" instance=ExtResource( 10 )]
 position = Vector2( 71, 79 )
-max_value = 150
+max_value = 200
 
 [node name="HpBarPlayer2" parent="HUD" instance=ExtResource( 10 )]
 position = Vector2( 776, 78 )
-max_value = 150
+max_value = 200
 flip = true
 
 [node name="GameStartTimer" type="Timer" parent="."]
