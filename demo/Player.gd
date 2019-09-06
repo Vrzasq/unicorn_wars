@@ -4,6 +4,11 @@ class_name Player
 
 signal turn_end
 signal damage_taken
+signal died
+
+const ShootingStarsScene = preload("res://scenes/player/shooting_stars.tscn")
+const DeathBlowScene = preload("res://scenes/player/death_blow.tscn")
+var bouncy_material = preload("res://bouncy_material.tres")
 
 export(PackedScene) var PowerIndicatorScene
 export(NodePath) var power_indicator_placeholder_path
@@ -18,9 +23,8 @@ export(int) var player_hp = 150
 export(int) var armor = 100
 export(String) var display_name = "Player"
 export(bool) var can_be_dmg_after_hit = false
-
-const ShootingStarsScene = preload("res://scenes/player/shooting_stars.tscn")
-const DeathBlowScene = preload("res://scenes/player/shooting_stars.tscn")
+export(int) var death_power = 8000
+export(int) var game_over_timeout = 10
 
 var other_player: RigidBody2D
 var starting_position: Node2D
@@ -68,7 +72,7 @@ func handle_player_input(event : InputEvent) -> void:
     if event.is_action_pressed("ui_accept"):
         reset_state = true
 
-    
+
 func shot_bullet() -> void:
     var bullet: RigidBody2D = create_bullet()
     var bullet_container = get_node(bullet_container_path)
@@ -133,7 +137,8 @@ func start_turn() -> void:
     
 
 func _on_bullet_destroyed() -> void:
-    emit_signal("turn_end", other_player as Player)
+    if !other_player.dead:
+        emit_signal("turn_end", other_player as Player)
     
 
 func _on_Player_body_entered(body: Node) -> void:
@@ -143,10 +148,7 @@ func _on_Player_body_entered(body: Node) -> void:
         var damage := calculate_damage(bullet.get_bullet_damage(), bullet.min_damage)
         take_damage(damage)
         if dead:
-            var dead_blow = DeathBlowScene.instance()
-            dead_blow.position = self.position
-            dead_blow.emitting = true
-            self.add_child(dead_blow)
+            handle_death(bullet)
         
         
 func take_damage(damage : int) -> void:
@@ -173,3 +175,33 @@ func reduce_hp(damage : int) -> void:
     if player_hp <= 0:
         player_hp = 0
         dead = true
+        
+func handle_death(bullet : Bullet) -> void:
+    play_death_particles()
+    apply_death_power(bullet)
+    start_game_over_countdown()
+    shot_indicator.queue_free()
+    
+    
+func play_death_particles() -> void:
+    var dead_blow = DeathBlowScene.instance()
+    dead_blow.emitting = true
+    dead_blow.position = Vector2.ZERO
+    self.add_child(dead_blow)
+
+
+func apply_death_power(bullet : Bullet) -> void:
+    var direction = bullet.global_position.direction_to(self.global_position)
+    self.physics_material_override = bouncy_material
+    apply_central_impulse(direction * Vector2(death_power, -death_power))
+    
+
+func start_game_over_countdown() -> void:
+    var game_over_timer = Timer.new()
+    game_over_timer.start(game_over_timeout)
+    game_over_timer.connect("timeout", self, "on_game_over_timeout")
+    add_child(game_over_timer)
+    
+    
+func on_game_over_timeout() -> void:
+    emit_signal("died", other_player)
