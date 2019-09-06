@@ -11,19 +11,19 @@ script = ExtResource( 1 )
 GameScene = ExtResource( 2 )
 
 [node name="StartGameButton" type="Button" parent="."]
-margin_left = 339.693
-margin_top = 428.665
-margin_right = 751.693
-margin_bottom = 538.665
+margin_left = 320.0
+margin_top = 429.0
+margin_right = 732.0
+margin_bottom = 539.0
 theme = ExtResource( 3 )
 action_mode = 0
 text = "START GAME"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 342.338
-margin_top = 172.662
-margin_right = 752.338
-margin_bottom = 376.662
+margin_left = 320.0
+margin_top = 172.0
+margin_right = 730.0
+margin_bottom = 376.0
 __meta__ = {
 "_edit_group_": true
 }
@@ -62,7 +62,7 @@ align = 1
 max_length = 10
 
 [node name="Title" parent="." instance=ExtResource( 4 )]
-position = Vector2( 381.633, 43.7119 )
+position = Vector2( 375, 44 )
 text = "Unicorn Wars"
 theme = ExtResource( 5 )
 [connection signal="pressed" from="StartGameButton" to="." method="_on_StartGameButton_pressed"]

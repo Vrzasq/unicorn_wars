@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://demo/game_over.gd" type="Script" id=1]
+[ext_resource path="res://demo/main.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/ui/rainbow_label/rainbow_label.tscn" type="PackedScene" id=3]
+[ext_resource path="res://resources/themes/title.tres" type="Theme" id=4]
+[ext_resource path="res://resources/themes/default.tres" type="Theme" id=5]
+
+[node name="Node" type="Node"]
+script = ExtResource( 1 )
+MainManuScene = ExtResource( 2 )
+winner_name = "Vrzasq"
+
+[node name="GameOverLabel" parent="." instance=ExtResource( 3 )]
+position = Vector2( 370, 79 )
+text = "Game Over"
+theme = ExtResource( 4 )
+
+[node name="PlayerLabel" parent="." instance=ExtResource( 3 )]
+position = Vector2( 320, 196 )
+theme = ExtResource( 4 )
+
+[node name="PlayAgainButton" type="Button" parent="."]
+margin_left = 320.0
+margin_top = 345.0
+margin_right = 673.0
+margin_bottom = 423.0
+theme = ExtResource( 5 )
+text = "Play Again"
+
+[node name="QuitButton" type="Button" parent="."]
+margin_left = 320.0
+margin_top = 477.0
+margin_right = 673.0
+margin_bottom = 555.0
+theme = ExtResource( 5 )
+text = "Quit"
+[connection signal="pressed" from="PlayAgainButton" to="." method="_on_PlayAgainButton_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
