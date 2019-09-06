@@ -234,7 +234,6 @@ tile_data = PoolIntArray( 524288, 0, 1, 524289, 0, 2, 524290, 0, 2, 524291, 0, 2
 [node name="Player2" type="RigidBody2D" parent="." groups=[
 "players",
 ]]
-editor/display_folded = true
 position = Vector2( 893.347, 218.891 )
 collision_layer = 2
 collision_mask = 2
@@ -254,6 +253,8 @@ max_shot_power = 1000
 starting_position_path = NodePath("../PlayersInitialPosition/Player2StartingPosition")
 shot_indicator_path = NodePath("../HUD/ShotIndicator")
 hud_path = NodePath("../HUD")
+player_hp = 10
+can_be_dmg_after_hit = true
 
 [node name="Sprite" type="Sprite" parent="Player2"]
 scale = Vector2( 0.25, 0.25 )
@@ -292,6 +293,8 @@ max_shot_power = 1000
 starting_position_path = NodePath("../PlayersInitialPosition/Player1StatringPosition")
 shot_indicator_path = NodePath("../HUD/ShotIndicator")
 hud_path = NodePath("../HUD")
+player_hp = 10
+can_be_dmg_after_hit = true
 
 [node name="Sprite" type="Sprite" parent="Player1"]
 scale = Vector2( -0.25, 0.25 )

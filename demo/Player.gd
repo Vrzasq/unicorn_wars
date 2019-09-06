@@ -17,8 +17,10 @@ export(NodePath) var hud_path
 export(int) var player_hp = 150
 export(int) var armor = 100
 export(String) var display_name = "Player"
+export(bool) var can_be_dmg_after_hit = false
 
 const ShootingStarsScene = preload("res://scenes/player/shooting_stars.tscn")
+const DeathBlowScene = preload("res://scenes/player/shooting_stars.tscn")
 
 var other_player: RigidBody2D
 var starting_position: Node2D
@@ -30,6 +32,7 @@ var power_indicator : PowerIndicator
 var shooting_stars : Particles2D
 var this_player_turn = false
 var can_shoot = false
+var dead = false
 
 
 func _ready() -> void:
@@ -136,9 +139,14 @@ func _on_bullet_destroyed() -> void:
 func _on_Player_body_entered(body: Node) -> void:
     var bullet = body as Bullet
     if bullet && body.can_damage:
-#        bullet.can_damage = false
+        bullet.can_damage = !can_be_dmg_after_hit
         var damage := calculate_damage(bullet.get_bullet_damage(), bullet.min_damage)
         take_damage(damage)
+        if dead:
+            var dead_blow = DeathBlowScene.instance()
+            dead_blow.position = self.position
+            dead_blow.emitting = true
+            self.add_child(dead_blow)
         
         
 func take_damage(damage : int) -> void:
@@ -162,5 +170,6 @@ func calculate_damage(bullet_damage : int, min_damage : int) -> int:
     
 func reduce_hp(damage : int) -> void:
     player_hp -= damage
-    if player_hp < 0:
+    if player_hp <= 0:
         player_hp = 0
+        dead = true
