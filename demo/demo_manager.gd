@@ -23,14 +23,11 @@ func assign_players() -> void:
     for player in all_players:
         players[player.name] = player
         player.connect("turn_end", self, "on_player_turn_end")
-        
-    if player1_name != "":
-        players.Player1.display_name = player1_name
-        
-    if player2_name != "":
-        players.Player2.display_name = player2_name
-        
-            
+        player.connect("died", self, "on_player_died")
+    
+    set_player_name(players.Player1, player1_name)
+    set_player_name(players.Player2, player2_name)
+    
 
 func choose_statring_player() -> void:
     randomize()
@@ -55,6 +52,13 @@ func on_player_turn_end(other_player : Player) -> void:
     set_current_player_name()
     
     
+func set_player_name(player : Player, name : String) -> void:
+    if name != "":
+        player.display_name = name
+    else:
+        player.display_name = player.name
+    
+    
 func set_current_player_name() -> void:
     player_name_display.set_text(current_player.display_name)
 
@@ -62,3 +66,17 @@ func set_current_player_name() -> void:
 func _on_GameStartTimer_timeout() -> void:
     get_tree().paused = false
     $GameStartTimer.queue_free()
+    
+    
+func on_player_died(winner_player : Player) -> void:
+    show_game_over_scene(winner_player)
+ 
+
+func show_game_over_scene(winner_player : Player) -> void:
+    var tree : SceneTree = get_tree()
+    tree.root.remove_child(self)
+    self.call_deferred("free")
+    
+    var game_over = load("res://demo/game_over.tscn").instance()
+    game_over.winner_name = winner_player.display_name
+    tree.root.add_child(game_over)

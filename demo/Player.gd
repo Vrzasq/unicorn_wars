@@ -50,6 +50,9 @@ func _ready() -> void:
     shooting_stars.position = $ShootingPoint.position
     add_child(shooting_stars)
     
+    if display_name == "":
+        display_name = name
+    
 
 func _input(event: InputEvent) -> void:
     if this_player_turn && can_shoot:

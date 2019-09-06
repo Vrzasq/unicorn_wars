@@ -24,11 +24,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://demo/demo_manager.gd"
 }, {
-"base": "Node",
-"class": "GameOver",
-"language": "GDScript",
-"path": "res://demo/game_over.gd"
-}, {
 "base": "Node2D",
 "class": "HpBar",
 "language": "GDScript",
@@ -58,7 +53,6 @@ _global_script_class_icons={
 "Bullet": "",
 "DamageTakenArgs": "",
 "DemoManager": "",
-"GameOver": "",
 "HpBar": "",
 "Player": "",
 "PowerIndicator": "",
