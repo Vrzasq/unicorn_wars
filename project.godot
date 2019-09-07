@@ -90,9 +90,5 @@ shot={
 
 [rendering]
 
-quality/intended_usage/framebuffer_allocation=0
-quality/intended_usage/framebuffer_allocation.mobile=0
-quality/2d/use_pixel_snap=true
-quality/filters/anisotropic_filter_level=8
 environment/default_clear_color=Color( 0.301961, 0.301961, 0.301961, 1 )
 environment/default_environment="res://default_env.tres"

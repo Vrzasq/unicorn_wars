@@ -41,6 +41,8 @@ margin_bottom = 114.0
 theme = ExtResource( 2 )
 align = 1
 max_length = 10
+context_menu_enabled = false
+caret_blink = true
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 margin_top = 122.0
@@ -58,6 +60,8 @@ margin_bottom = 236.0
 theme = ExtResource( 2 )
 align = 1
 max_length = 10
+context_menu_enabled = false
+caret_blink = true
 
 [node name="Title" parent="." instance=ExtResource( 3 )]
 position = Vector2( 375, 44 )
