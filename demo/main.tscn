@@ -35,26 +35,26 @@ align = 1
 valign = 1
 
 [node name="Player1Name" type="LineEdit" parent="VBoxContainer"]
-margin_top = 47.0
+margin_top = 51.0
 margin_right = 410.0
-margin_bottom = 100.0
+margin_bottom = 114.0
 theme = ExtResource( 2 )
 align = 1
 max_length = 10
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
-margin_top = 104.0
+margin_top = 122.0
 margin_right = 410.0
-margin_bottom = 147.0
+margin_bottom = 165.0
 theme = ExtResource( 2 )
 text = "Player 2 Name"
 align = 1
 valign = 1
 
 [node name="Player2Name" type="LineEdit" parent="VBoxContainer"]
-margin_top = 151.0
+margin_top = 173.0
 margin_right = 410.0
-margin_bottom = 204.0
+margin_bottom = 236.0
 theme = ExtResource( 2 )
 align = 1
 max_length = 10
