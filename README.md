@@ -35,8 +35,8 @@ Here is couple ideas how i want to progress further with the game :
 * extra bouncy mode
 * power ups
 * different levels environment which will affect bullet physic:
-..* underwater level
-..* space level
+  * underwater level
+  * space level
 * large level with following camera
 * platform level
 * more playable characters
