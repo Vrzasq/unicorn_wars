@@ -4,6 +4,7 @@ Unicorn Wars is a simple turn based 2D game where 2 unicorns shoot each other un
 
 Playable demo can be found here:
 [https://vrzasq.github.io/unicorn_wars](https://vrzasq.github.io/unicorn_wars)
+Game runs on Chrome (windows / ios) desktop and mobile
 
 Code repository here:
 [https://github.com/Vrzasq/unicorn_wars](https://github.com/Vrzasq/unicorn_wars)
