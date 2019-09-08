@@ -2,11 +2,11 @@ Demo:
     ✔ add player hp gui @high @today @done(19-08-30 16:24)
     ✔ add animation for loss hp @done(19-08-30 16:52)
     ✔ start page @done(19-09-06 16:29)
-    ☐ gameover @high
-    ☐ play again
+    ✔ gameover @high @done(19-09-08 13:22)
+    ✔ play again @done(19-09-08 13:22)
     Demo start:
-        ☐ player naming @medium
-        ☐ direct to play demo scene @medium
+        ✔ player naming @medium @done(19-09-08 13:22)
+        ✔ direct to play demo scene @medium @done(19-09-08 14:03)
     ☐ add background @low
     ☐ add proper bullet @low
     ☐ change direction indactor @low
