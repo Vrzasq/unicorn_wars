@@ -7,7 +7,7 @@
 [ext_resource path="res://demo/bullet.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/unicorn/unicorn.png" type="Texture" id=6]
 [ext_resource path="res://bouncy_material.tres" type="PhysicsMaterial" id=7]
-[ext_resource path="res://demo/ShotIndicator.gd" type="Script" id=8]
+[ext_resource path="res://scenes/ui/direction_indicator.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/ui/rainbow_label/rainbow_label.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/ui/hp_bar/hp_bar.tscn" type="PackedScene" id=10]
 [ext_resource path="res://demo/game_start_timer.gd" type="Script" id=11]
@@ -359,16 +359,7 @@ editor/display_folded = true
 
 [node name="HUD" type="Node" parent="."]
 
-[node name="ShotIndicator" type="Node2D" parent="HUD"]
-position = Vector2( 506.274, 176.474 )
-script = ExtResource( 8 )
-rotation_amount = 100
-
-[node name="Line2D" type="Line2D" parent="HUD/ShotIndicator"]
-points = PoolVector2Array( 0, 0, 0, -100 )
-width = 5.0
-default_color = Color( 0.615686, 0.141176, 0.552941, 1 )
-texture_mode = 1717527925
+[node name="ShotIndicator" parent="HUD" instance=ExtResource( 8 )]
 
 [node name="PowerIndicatorPlaceholder" type="Node2D" parent="HUD"]
 position = Vector2( 396.317, 232.106 )

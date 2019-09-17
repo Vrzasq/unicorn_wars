@@ -2,30 +2,24 @@ extends Node2D
 
 class_name ShotIndicator
 
-export(int) var rotation_amount = 5
-export(bool) var is_running = true
+export(float) var playback_speed = 1.75
 
 var line : Line2D
+var animation_player : AnimationPlayer
 
 
 func _ready() -> void:
-    line = $Line2D
-
-
-func _process(delta: float) -> void:
-    if is_running:
-        line.rotation_degrees += delta * rotation_amount
-    
-    if line.rotation_degrees >= 90 || line.rotation_degrees <= -90:
-        rotation_amount *= -1
+    line = $Line2D as Line2D
+    animation_player = $Line2D/AnimationPlayer as AnimationPlayer
+    animation_player.playback_speed = playback_speed
 
 
 func start() -> void:
-    is_running = true
+    animation_player.play()
     
     
 func stop() -> void:
-    is_running = false
+    animation_player.stop(false)
 
 
 func get_direction() -> Vector2:
