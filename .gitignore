@@ -9,3 +9,6 @@ export_presets.cfg
 
 #builds
 /build
+
+#Editor
+.vs
