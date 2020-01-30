@@ -40,11 +40,6 @@ _global_script_classes=[ {
 "path": "res://scenes/ui/power_indicator/power_indicator.gd"
 }, {
 "base": "Node2D",
-"class": "RainbowLabel",
-"language": "GDScript",
-"path": "res://scenes/ui/rainbow_label/rainbow_label.gd"
-}, {
-"base": "Node2D",
 "class": "ShotIndicator",
 "language": "GDScript",
 "path": "res://demo/ShotIndicator.gd"
@@ -56,7 +51,6 @@ _global_script_class_icons={
 "HpBar": "",
 "Player": "",
 "PowerIndicator": "",
-"RainbowLabel": "",
 "ShotIndicator": ""
 }
 

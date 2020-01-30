@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://demo/ShotIndicator.gd" type="Script" id=1]
+[ext_resource path="res://scenes/ui/direction_indicator/DirectionIndicator.cs" type="Script" id=1]
 
 [sub_resource type="Animation" id=1]
 resource_name = "rotate"
@@ -22,7 +22,7 @@ tracks/0/keys = {
 [node name="ShotIndicator" type="Node2D"]
 position = Vector2( 506.274, 176.474 )
 script = ExtResource( 1 )
-playback_speed = 1.55
+PlaybackSpeed = 1.55
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PoolVector2Array( 0, 0, 0, -100 )

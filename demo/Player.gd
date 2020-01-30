@@ -11,8 +11,8 @@ const DeathBlowScene = preload("res://scenes/player/death_blow.tscn")
 var bouncy_material = preload("res://bouncy_material.tres")
 
 export(PackedScene) var PowerIndicatorScene
-export(NodePath) var power_indicator_placeholder_path
 export(PackedScene) var BulletScene
+export(NodePath) var power_indicator_placeholder_path
 export(NodePath) var bullet_container_path
 export(NodePath) var other_player_node_path
 export(int) var max_shot_power

@@ -1,22 +1,18 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://demo/game_over.gd" type="Script" id=1]
+[ext_resource path="res://demo/GameOver.cs" type="Script" id=1]
 [ext_resource path="res://scenes/ui/rainbow_label/rainbow_label.tscn" type="PackedScene" id=2]
-[ext_resource path="res://resources/themes/title.tres" type="Theme" id=3]
 [ext_resource path="res://resources/themes/default.tres" type="Theme" id=4]
 
 [node name="Node" type="Node"]
 script = ExtResource( 1 )
-winner_name = "Vrzasq"
+WinnerName = "Vrzasq"
 
 [node name="GameOverLabel" parent="." instance=ExtResource( 2 )]
 position = Vector2( 370, 79 )
-text = "Game Over"
-theme = ExtResource( 3 )
 
 [node name="PlayerLabel" parent="." instance=ExtResource( 2 )]
 position = Vector2( 320, 196 )
-theme = ExtResource( 3 )
 
 [node name="PlayAgainButton" type="Button" parent="."]
 margin_left = 320.0
@@ -25,6 +21,9 @@ margin_right = 673.0
 margin_bottom = 423.0
 theme = ExtResource( 4 )
 text = "Play Again"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="QuitButton" type="Button" parent="."]
 margin_left = 320.0
@@ -33,5 +32,8 @@ margin_right = 673.0
 margin_bottom = 555.0
 theme = ExtResource( 4 )
 text = "Quit"
-[connection signal="pressed" from="PlayAgainButton" to="." method="_on_PlayAgainButton_pressed"]
-[connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="PlayAgainButton" to="." method="OnPlayAgainButtonPressed"]
+[connection signal="pressed" from="QuitButton" to="." method="OnQuitButtonPressed"]

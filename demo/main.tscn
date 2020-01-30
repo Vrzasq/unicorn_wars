@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://demo/main.gd" type="Script" id=1]
+[ext_resource path="res://demo/Main.cs" type="Script" id=1]
 [ext_resource path="res://resources/themes/default.tres" type="Theme" id=2]
-[ext_resource path="res://scripts/html_input.gd" type="Script" id=3]
+[ext_resource path="res://scripts/HtmlInput.cs" type="Script" id=3]
 [ext_resource path="res://scenes/ui/rainbow_label/rainbow_label.tscn" type="PackedScene" id=4]
 [ext_resource path="res://resources/themes/title.tres" type="Theme" id=5]
 
@@ -24,7 +24,8 @@ margin_top = 172.0
 margin_right = 730.0
 margin_bottom = 376.0
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="VBoxContainer"]
@@ -45,7 +46,7 @@ max_length = 10
 context_menu_enabled = false
 caret_blink = true
 script = ExtResource( 3 )
-label_path = NodePath("../Label")
+LabelPath = NodePath("../Label")
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 margin_top = 122.0
@@ -66,10 +67,10 @@ max_length = 10
 context_menu_enabled = false
 caret_blink = true
 script = ExtResource( 3 )
-label_path = NodePath("../Label2")
+LabelPath = NodePath("../Label2")
 
 [node name="Title" parent="." instance=ExtResource( 4 )]
 position = Vector2( 375, 44 )
-text = "Unicorn Wars"
-theme = ExtResource( 5 )
+Text = "Unicorn Wars"
+Theme = ExtResource( 5 )
 [connection signal="pressed" from="StartGameButton" to="." method="_on_StartGameButton_pressed"]

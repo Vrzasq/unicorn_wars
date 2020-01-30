@@ -1,17 +1,16 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=36 format=2]
 
-[ext_resource path="res://demo/demo_manager.gd" type="Script" id=1]
+[ext_resource path="res://demo/DemoManager.cs" type="Script" id=1]
 [ext_resource path="res://demo/tilesheet.png" type="Texture" id=2]
 [ext_resource path="res://demo/Player.gd" type="Script" id=3]
 [ext_resource path="res://scenes/ui/power_indicator/power_indicator.tscn" type="PackedScene" id=4]
 [ext_resource path="res://demo/bullet.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/unicorn/unicorn.png" type="Texture" id=6]
 [ext_resource path="res://bouncy_material.tres" type="PhysicsMaterial" id=7]
-[ext_resource path="res://scenes/ui/direction_indicator.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/ui/direction_indicator/direction_indicator.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/ui/rainbow_label/rainbow_label.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/ui/hp_bar/hp_bar.tscn" type="PackedScene" id=10]
-[ext_resource path="res://demo/game_start_timer.gd" type="Script" id=11]
-[ext_resource path="res://resources/themes/title.tres" type="Theme" id=12]
+[ext_resource path="res://demo/GameStartTimer.cs" type="Script" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -85,6 +84,7 @@ points = PoolVector2Array( 0, 12.9167, 9.25, 0, 52.3055, 0, 63.4167, 10.8333, 64
 0/autotile/spacing = 0
 0/autotile/occluder_map = [  ]
 0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
 0/autotile/z_index_map = [  ]
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
@@ -223,6 +223,8 @@ extents = Vector2( 11.5186, 533.453 )
 [node name="Demo" type="Node2D"]
 pause_mode = 1
 script = ExtResource( 1 )
+Player1Name = "Player1"
+Player2Name = "Player2"
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 21 )
@@ -312,7 +314,6 @@ position = Vector2( -9.454, 47.899 )
 shape = SubResource( 22 )
 
 [node name="Walls" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="RightWall" type="StaticBody2D" parent="Walls"]
 position = Vector2( 1036, 331 )
@@ -351,7 +352,6 @@ shape = SubResource( 23 )
 [node name="Bullets" type="Node" parent="."]
 
 [node name="PlayersInitialPosition" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Player1StatringPosition" type="Node2D" parent="PlayersInitialPosition"]
 
@@ -369,12 +369,10 @@ position = Vector2( 432.102, 34.7196 )
 
 [node name="HpBarPlayer1" parent="HUD" instance=ExtResource( 10 )]
 position = Vector2( 71, 79 )
-max_value = 200
 
 [node name="HpBarPlayer2" parent="HUD" instance=ExtResource( 10 )]
 position = Vector2( 776, 78 )
-max_value = 200
-flip = true
+Flip = true
 
 [node name="GameStartTimer" type="Timer" parent="."]
 pause_mode = 2
@@ -385,9 +383,8 @@ script = ExtResource( 11 )
 
 [node name="TimerLabel" parent="GameStartTimer" instance=ExtResource( 9 )]
 position = Vector2( 430, 300 )
-theme = ExtResource( 12 )
 [connection signal="body_entered" from="Player2" to="Player2" method="_on_Player_body_entered"]
 [connection signal="damage_taken" from="Player2" to="HUD/HpBarPlayer2" method="on_hp_loss"]
 [connection signal="body_entered" from="Player1" to="Player1" method="_on_Player_body_entered"]
 [connection signal="damage_taken" from="Player1" to="HUD/HpBarPlayer1" method="on_hp_loss"]
-[connection signal="timeout" from="GameStartTimer" to="." method="_on_GameStartTimer_timeout"]
+[connection signal="timeout" from="GameStartTimer" to="." method="OnGameStartTimerTmeout"]

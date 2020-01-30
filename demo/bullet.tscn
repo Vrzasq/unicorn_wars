@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://demo/bullet.gd" type="Script" id=1]
+[ext_resource path="res://demo/Bullet.cs" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -15,8 +15,8 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-time_to_destroy_on_hit = 8.0
-min_damage = 2
+TimeToDestroyOnHit = 8.0
+MinDamage = 2
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.3, 0.3 )
@@ -26,5 +26,5 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="DestroyTimer" type="Timer" parent="."]
-[connection signal="body_entered" from="." to="." method="_on_RigidBody2D_body_entered"]
-[connection signal="timeout" from="DestroyTimer" to="." method="_on_DestroyTimer_timeout"]
+[connection signal="body_entered" from="." to="." method="OnRigidBody2DBodyEntered"]
+[connection signal="timeout" from="DestroyTimer" to="." method="OnDestroyTimerTimeout"]

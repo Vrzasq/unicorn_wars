@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/ui/hp_bar/hp_bar.gd" type="Script" id=1]
+[ext_resource path="res://scenes/ui/hp_bar/HpBar.cs" type="Script" id=1]
 [ext_resource path="res://assets/rainbow.png" type="Texture" id=2]
 [ext_resource path="res://resources/themes/hp_label.tres" type="Theme" id=3]
 [ext_resource path="res://scenes/ui/hp_bar/hp_loss.tres" type="Animation" id=4]

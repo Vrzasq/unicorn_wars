@@ -53,7 +53,25 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="demo\Bullet.cs" />
+    <Compile Include="demo\GameOver.cs" />
+    <Compile Include="demo\GameStartTimer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="scenes\ui\direction_indicator\DirectionIndicator.cs" />
+    <Compile Include="scenes\ui\rainbow_label\RainbowLabel.cs" />
+    <Compile Include="scenes\ui\power_indicator\PowerIndicator.cs" />
+    <Compile Include="scenes\ui\hp_bar\HpBar.cs" />
+    <Compile Include="scripts\DamageTakenArgs.cs" />
+    <Compile Include="scripts\IHelthPoints.cs" />
+    <Compile Include="demo\Player.cs" />
+    <Compile Include="demo\DemoManager.cs" />
+    <Compile Include="demo\Main.cs" />
+    <Compile Include="scripts\HtmlInput.cs" />
+    <Compile Include="scripts\behaviours\IDamageable.cs" />
+    <Compile Include="scripts\behaviours\IKillable.cs" />
+    <Compile Include="scripts\behaviours\IPlayer.cs" />
+    <Compile Include="scripts\systems\event_manager\IEventManager.cs" />
+    <Compile Include="scripts\systems\event_manager\EventManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
